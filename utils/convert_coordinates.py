@@ -18,8 +18,8 @@ def convert_coordinates(
         print(f"Created folder {output_file_dir}")
     output_lines = dict()  # 存储转换后的结果
 
-    orgimg_w = 0
-    orgimg_h = 0
+    # orgimg_w = 0
+    # orgimg_h = 0
     # 遍历文件夹中的每个 TXT 文件
     for root, dirs, files in os.walk(txt_label_path):
         for index, filename in enumerate(files):
@@ -71,6 +71,8 @@ def convert_coordinates(
                         w_in_original,
                         h_in_original,
                         float(conf),
+                        orgimg_w,
+                        orgimg_h
                     ]
 
                     converted_lines.append(converted_line)
@@ -80,6 +82,10 @@ def convert_coordinates(
                     output_lines[imgname] = converted_lines
                 else:
                     output_lines[imgname].extend(converted_lines)
+                    
+    # print(f'orgimg_w-------{orgimg_w}')
+    # print(f'orgimg_h-------{orgimg_h}')
+
     outputs_file_path_list = []
     for key, value in output_lines.items():
         nms_output_lines = apply_nms(
@@ -87,8 +93,6 @@ def convert_coordinates(
             iou_threshold,
             confidence_threshold,
             area_weight,
-            orgimg_w,
-            orgimg_h,
         )
 
         # 将转换后的结果写入输出文件

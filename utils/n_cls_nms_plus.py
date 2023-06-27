@@ -106,7 +106,7 @@ def nms_per_class(
 
 
 def apply_nms(
-    outputs, iou_threshold, confidence_threshold, area_weight, orgimg_w, orgimg_h
+    outputs, iou_threshold, confidence_threshold, area_weight
 ):
     # 将边界框列表转换为NumPy数组
     outputs = np.array(outputs)
@@ -121,6 +121,8 @@ def apply_nms(
         h = out[4]
         score = out[5]
         class_id = int(out[0])
+        orgimg_w = int(out[6])
+        orgimg_h = int(out[7])
 
         # 计算边界
         left = float(x - w / 2)
