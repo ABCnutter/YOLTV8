@@ -15,12 +15,12 @@ def draw_predictions_on_image(
 
     # 定义每个类别对应的颜色
     colors = [
-        # (255, 0, 0),  # head: 红色
-        # (0, 255, 0),  # boxholder: 绿色
+        (255, 0, 0),  # head: 红色
+        (0, 255, 0),  # boxholder: 绿色
         (0, 0, 255),  # greendevice: 蓝色
         (255, 255, 0),  # baseholer: 青色
-        # (0, 255, 255),  # circledevice: 黄色
-        # (255, 0, 255),  # alldrop: 品红色
+        (0, 255, 255),  # circledevice: 黄色
+        (255, 0, 255),  # alldrop: 品红色
     ]
 
     # 定义类别标签到类别名称的映射

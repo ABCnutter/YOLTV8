@@ -1,8 +1,6 @@
 import os
 import sys
 import argparse
-from pprint import pprint
-from tqdm import tqdm
 PROJECT_ROOT = os.path.abspath(os.path.join(os.getcwd(), "."))
 sys.path.append(PROJECT_ROOT)
 sys.path.append(os.path.join(PROJECT_ROOT, "utils"))
@@ -62,7 +60,7 @@ def predict(
         ],
     completed_output_path=os.path.join(PROJECT_ROOT, 'results', 'completed_predict')
 ):
-    im_list = [z for z in os.listdir(images_dir) if z.endswith(im_ext)]
+    im_list = [z for z in os.listdir(images_dir) if z.lower().endswith(im_ext.lower())]
 
     if not os.path.exists(os.path.join(outdir_slice_ims, project_name)):
         os.makedirs(os.path.join(outdir_slice_ims, project_name))
@@ -73,9 +71,9 @@ def predict(
         print(f"{os.path.join(outdir_slice_ims, project_name)} is existed! The original content will be overwritten!!")
 
         # slice images
-    for i, im_name in tqdm(enumerate(im_list)):
+    for i, im_name in enumerate(im_list):
         im_path = os.path.join(images_dir, im_name)
-        print("=========================== ", im_name, "--", i, "/", len(im_list), " =========================== ")
+        print("=========================== ", im_name, "--", i + 1, "/", len(im_list), " =========================== ")
 
         slice_image(
             im_path,
@@ -128,7 +126,10 @@ def predict(
             boxes,
         )
     )
-    pprint(f"prefict shell: {predict_shell}")
+    print('\n')
+    print(f"predict shell: {predict_shell}")
+    print('\n')
+
     os.system(predict_shell)
 
     txt_label_path = os.path.join(yolov8_predict_results_path, 'labels')
@@ -154,17 +155,17 @@ def predict(
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--images_dir", type=str, default=os.path.join(PROJECT_ROOT, 'dataset', 'predict', 'insar'))
+    parser.add_argument("--images_dir", type=str, default=os.path.join(PROJECT_ROOT, 'dataset', 'predict', 'init_images'))
     parser.add_argument("--outdir_slice_ims", type=str, default=os.path.join(PROJECT_ROOT, 'dataset', 'predict', 'slice_images'))
-    parser.add_argument("--project_name", type=str, default="insar_detect")
-    parser.add_argument("--im_ext", type=str, default=".png")
-    parser.add_argument("--sliceHeight", type=int, default=128)
-    parser.add_argument("--sliceWidth", type=int, default=128)
+    parser.add_argument("--project_name", type=str, default="sensor_detect")
+    parser.add_argument("--im_ext", type=str, default=".jpg")
+    parser.add_argument("--sliceHeight", type=int, default=1088)
+    parser.add_argument("--sliceWidth", type=int, default=1088)
     parser.add_argument("--overlap", type=float, default=0.5)
     parser.add_argument("--slice_sep", type=str, default="_")
     parser.add_argument("--overwrite", type=bool, default=False)
     parser.add_argument("--out_ext", type=str, default=".png")
-    parser.add_argument("--model", type=str, default=r"E:\CS\GitHubClone\YOLO\yoltv8\checkpoint\insar\best.pt")
+    parser.add_argument("--model", type=str, default=r"E:\CS\work\ZHENZI\yoltv8\checkpoint\best.pt")
     parser.add_argument("--conf", type=float, default=0.25)  # object confidence threshold for detection
     parser.add_argument("--iou", type=float, default=0.7)  # intersection over union (IoU) threshold for NMS
     parser.add_argument("--half", type=bool, default=False)  # use FP16 half-precision inference
@@ -176,7 +177,7 @@ if __name__ == '__main__':
     parser.add_argument("--save_crop", type=bool, default=False)  # save cropped prediction boxes
     parser.add_argument("--hide_labels", type=bool, default=False)  # hide labels
     parser.add_argument("--hide_conf", type=bool, default=False)
-    parser.add_argument("--max_det", type=int, default=1000)  # maximum detections per image
+    parser.add_argument("--max_det", type=int, default=300)  # maximum detections per image
     parser.add_argument("--vid_stride", type=bool, default=False)  # video frame-rate stride
     parser.add_argument("--line_width", type=float, default=None)
     parser.add_argument("--visualize", type=bool, default=False)
@@ -186,17 +187,17 @@ if __name__ == '__main__':
     parser.add_argument("--classes", type=int, nargs="+", default=None)
     parser.add_argument("--boxes", type=bool, default=True)
     parser.add_argument("--output_file_dir", type=str, default=os.path.join(PROJECT_ROOT, 'results', 'completed_txt'))
-    parser.add_argument("--iou_threshold", type=float, default=0.25)
-    parser.add_argument("--confidence_threshold", type=float, default=0.35)
+    parser.add_argument("--iou_threshold", type=float, default=0.01)
+    parser.add_argument("--confidence_threshold", type=float, default=0.5)
     parser.add_argument("--area_weight", type=float, default=5)
-    parser.add_argument("--class_labels", type=int, nargs="+", default=[0, 1])
+    parser.add_argument("--class_labels", type=int, nargs="+", default=[0, 1, 2, 3, 4, 5])
     parser.add_argument("--class_names", type=str, nargs="+", default=[
-            "settlement",
-            "lifting",
-            # "greendevice",
-            # "baseholer",
-            # "circledevice",
-            # "alldrop",
+            "head",
+            "boxholder",
+            "greendevice",
+            "baseholer",
+            "circledevice",
+            "alldrop",
         ])
     parser.add_argument("--completed_output_path", type=str, default=os.path.join(PROJECT_ROOT, 'results', 'completed_predict'))
 

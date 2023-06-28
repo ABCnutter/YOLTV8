@@ -2,12 +2,6 @@ import os
 import cv2
 import time
 
-# import shapely
-import numpy as np
-import skimage.io
-
-# import prep_train
-
 
 ###############################################################################
 def slice_image(
