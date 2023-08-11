@@ -174,4 +174,5 @@ conda install ultralytics
 
 结果路径示例展示（sensor_detect为本次推理的项目名称）：
 
-![image-20230628155620268](E:\CS\work\ZHENZI\yoltv8\README.assets\image-20230628155620268.png)
+![image-20230628155620268](https://github.com/ABCnutter/YOLTV8/assets/91233657/eb932d6b-c153-4972-859d-dbc7462bf309)
+
