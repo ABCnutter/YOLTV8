@@ -19,6 +19,8 @@
 
 ## Install Dependencies
 
+**注：请在yolov8文件夹下将ultralytics的yolov8 clone下来**
+
 **window** 
 
 **1、CPU**推理环境配置：
