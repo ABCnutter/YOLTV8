@@ -1,5 +1,8 @@
 # YOLTV8 — 大尺度图像目标检测框架
 
+![屏幕截图 2023-08-11 220337](https://github.com/ABCnutter/YOLTV8/assets/91233657/8a7c07d7-3bc6-49c6-ae15-e9d717fe6b77)
+
+
 针对大尺度图像（如遥感影像、大尺度工业检测图像等），由于设备的限制，无法利用图像直接进行模型训练。将图像裁剪至小尺度进行训练，再将训练结果进行还原拼接是解决该问题的普遍思路。YOLT项目（[[1805.09512\] You Only Look Twice: Rapid Multi-Scale Object Detection In Satellite Imagery (arxiv.org)](https://arxiv.org/abs/1805.09512?context=cs.CV)）是该思路具体实现，其以改进的YOLOV2作为检测框架，通过重叠裁剪预测处理以及对目标检测框拼接还原结果进行NMS过滤实现大尺度遥感影像的小型目标检测。但在具体方案操作时，本项目作者发现该方法存在以下几点问题：
 
 1. 无法较好地同时性地解决拼接结果中不同类别物体重叠检测框的精确过滤，尤其是位于图像边缘的不完整物体的检测框，会牺牲一定的检测精度。
@@ -14,7 +17,7 @@
 
 
 
-## Install
+## Install Dependencies
 
 **window** 
 
