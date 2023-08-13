@@ -13,7 +13,14 @@
 
 因此，本项目以最新的YOLOV8为检测框架，增设多尺度，多信息的预处理模块，捕获大尺度图像的多尺度上下文信息，能够有效识别出大尺度图像的大小型识别物体以及密集型检测目标。另外，此次我们还对对原始NMS算法进行改进，以满足不同类型物体以及重叠框（尤其是位于边缘的检测框）的过滤，实现大尺度影像的精确检测。
 
+- 煤渣传送带异常物体检测
+![ef6cc7b1acbb011327555950da120bb](https://github.com/ABCnutter/YOLTV8/assets/91233657/b85c1ae5-db8a-469c-8401-8e94ff61f069)
 
+- 通信天线内部元器件阵子检测
+![image](https://github.com/ABCnutter/YOLTV8/assets/91233657/fb759c31-41cc-450e-aea9-8cb256f6c08c)
+
+-基于InSAR影像的地表沉陷变化监测
+![xiji1](https://github.com/ABCnutter/YOLTV8/assets/91233657/be181611-6115-440b-a98a-46fb5d98ea4b)
 
 
 
