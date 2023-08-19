@@ -194,3 +194,4 @@ conda install ultralytics
 
 ![image-20230628155620268](https://github.com/ABCnutter/YOLTV8/assets/91233657/301996a5-80f4-4d70-b63a-bf0b91a0280c)
 
+**注**：多尺度，多信息的预处理模块还未上传，但不影响正常使用，可先增大裁剪尺寸以及重叠率来避免大物体（超大物体，物体无法在单幅影像块中完整给出）的识别不完整。
