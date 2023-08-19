@@ -11,7 +11,7 @@ from utils.n_cls_nms_plus import apply_nms
 def convert_coordinates(
     txt_label_path, output_file_dir, iou_threshold, confidence_threshold, area_weight, slice_sep
 ):
-    # txt_file_path: 存放 YOLOv5 小图检测结果的 TXT 文件的上级路径
+    # txt_file_path: 存放 YOLOv8 小图检测结果的 TXT 文件的上级路径
     # output_file_path: 变换后的结果存放的 TXT 文件路径
     if not os.path.exists(output_file_dir):
         os.makedirs(output_file_dir)
